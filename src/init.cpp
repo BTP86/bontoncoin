@@ -420,8 +420,8 @@ std::string HelpMessage(HelpMessageMode mode)
     {
         strUsage += HelpMessageOpt("-checkblocks=<n>", strprintf(_("How many blocks to check at startup (default: %u, 0 = all)"), DEFAULT_CHECKBLOCKS));
         strUsage += HelpMessageOpt("-checklevel=<n>", strprintf(_("How thorough the block verification of -checkblocks is (0-4, default: %u)"), DEFAULT_CHECKLEVEL));
-        strUsage += HelpMessageOpt("-checkblockindex", strprintf("Do a full consistency check for mapBlockIndex, setBlockIndexCandidates, chainActive and mapBlocksUnlinked occasionally. Also sets -checkmempool (default: %u)", Params(CBaseChainParams::MAIN).DefaultConsistencyChecks()));
-        strUsage += HelpMessageOpt("-checkmempool=<n>", strprintf("Run checks every <n> transactions (default: %u)", Params(CBaseChainParams::MAIN).DefaultConsistencyChecks()));
+        strUsage += HelpMessageOpt("-checkblockindex", strprintf("Do a full consistency check for mapBlockIndex, setBlockIndexCandidates, chainActive and mapBlocksUnlinked occasionally. Also sets -checkmempool (default: %u)", Params(CBaseChainParams::MAIN).DefauBONonsistencyChecks()));
+        strUsage += HelpMessageOpt("-checkmempool=<n>", strprintf("Run checks every <n> transactions (default: %u)", Params(CBaseChainParams::MAIN).DefauBONonsistencyChecks()));
         strUsage += HelpMessageOpt("-checkpoints", strprintf("Disable expensive verification for known chain history (default: %u)", DEFAULT_CHECKPOINTS_ENABLED));
         strUsage += HelpMessageOpt("-disablesafemode", strprintf("Disable safemode, override a real safe mode event (default: %u)", DEFAULT_DISABLE_SAFEMODE));
         strUsage += HelpMessageOpt("-testsafemode", strprintf("Force safe mode (default: %u)", DEFAULT_TESTSAFEMODE));
@@ -506,8 +506,8 @@ std::string HelpMessage(HelpMessageMode mode)
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/litecoin-project/litecoin>";
-    const std::string URL_WEBSITE = "<https://litecoin.org>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/bontoncoin-project/bontoncoin>";
+    const std::string URL_WEBSITE = "<https://bontoncoin.org>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2011, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +
@@ -788,7 +788,7 @@ void InitLogging()
     fLogIPs = GetBoolArg("-logips", DEFAULT_LOGIPS);
 
     LogPrintf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    LogPrintf("Litecoin version %s\n", FormatFullVersion());
+    LogPrintf("bontoncoin version %s\n", FormatFullVersion());
 }
 
 namespace { // Variables internal to initialization process only
@@ -932,11 +932,11 @@ bool AppInitParameterInteraction()
         InitWarning("Unsupported argument -blockminsize ignored.");
 
     // Checkmempool and checkblockindex default to true in regtest mode
-    int ratio = std::min<int>(std::max<int>(GetArg("-checkmempool", chainparams.DefaultConsistencyChecks() ? 1 : 0), 0), 1000000);
+    int ratio = std::min<int>(std::max<int>(GetArg("-checkmempool", chainparams.DefauBONonsistencyChecks() ? 1 : 0), 0), 1000000);
     if (ratio != 0) {
         mempool.setSanityCheck(1.0 / ratio);
     }
-    fCheckBlockIndex = GetBoolArg("-checkblockindex", chainparams.DefaultConsistencyChecks());
+    fCheckBlockIndex = GetBoolArg("-checkblockindex", chainparams.DefauBONonsistencyChecks());
     fCheckpointsEnabled = GetBoolArg("-checkpoints", DEFAULT_CHECKPOINTS_ENABLED);
 
     hashAssumeValid = uint256S(GetArg("-assumevalid", chainparams.GetConsensus().defaultAssumeValid.GetHex()));

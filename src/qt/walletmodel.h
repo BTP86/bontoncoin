@@ -211,7 +211,7 @@ public:
 
     bool hdEnabled() const;
 
-    int getDefaultConfirmTarget() const;
+    int getDefauBONonfirmTarget() const;
 
 private:
     CWallet *wallet;
